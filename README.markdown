@@ -491,16 +491,26 @@ attendeeList.sort { a, b in
   a > b
 }
 ```
+or
+
+```swift
+attendeeList.sort { $0 > $1 }
+```
 
 Chained methods using trailing closures should be clear and easy to read in context. Decisions on spacing, line breaks, and when to use named versus anonymous arguments is left to the discretion of the author. Examples:
 
 ```swift
 let value = numbers.map { $0 * 2 }.filter { $0 % 3 == 0 }.index(of: 90)
 
+// if only one operation
+let value = numbers.map {$0 * 2}
+
+// if more than one operation
 let value = numbers
   .map {$0 * 2}
   .filter {$0 > 50}
   .map {$0 + 10}
+  
 ```
 
 ## Types
