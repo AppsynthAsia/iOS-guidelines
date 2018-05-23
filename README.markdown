@@ -52,31 +52,62 @@ Strive to make your code compile without warnings. This rule informs many style 
 
 Descriptive and consistent naming makes software easier to read and understand. Use the Swift naming conventions described in the [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/). Some key takeaways include:
 
-- striving for clarity at the call site
-- prioritizing clarity over brevity
-- using camel case (not snake case)
-- using uppercase for types (and protocols), lowercase for everything else
-- including all needed words while omitting needless words
-- using names based on roles, not types
-- sometimes compensating for weak type information
-- striving for fluent usage
-- beginning factory methods with `make`
-- naming methods for their side effects
-  - verb methods follow the -ed, -ing rule for the non-mutating version
-  - noun methods follow the formX rule for the mutating version
-  - boolean types should read like assertions
-  - protocols that describe _what something is_ should read as nouns
-  - protocols that describe _a capability_ should end in _-able_ or _-ible_
-- using terms that don't surprise experts or confuse beginners
-- generally avoiding abbreviations
-- using precedent for names
-- preferring methods and properties to free functions
-- casing acronyms and initialisms uniformly up or down
-- giving the same base name to methods that share the same meaning
-- avoiding overloads on return type
-- choosing good parameter names that serve as documentation
-- labeling closure and tuple parameters
-- taking advantage of default parameters
+Include all the words needed to avoid ambiguity for a person reading code where the name is used.
+
+**Preferred:**
+```swift
+extension List {
+  public mutating func remove(at position: Index) -> Element
+}
+employees.remove(at: x)
+```
+
+**Not Preferred:**
+```swift
+employees.remove(x) // unclear: are we removing x?
+```
+
+Name variables, parameters, and associated types according to their roles, rather than their type constraints.
+
+**Preferred:**
+```swift
+var greeting = "Hello"
+protocol ViewController {
+  associatedtype ContentView : View
+}
+class ProductionLine {
+  func restock(from supplier: WidgetFactory)
+}
+```
+
+**Not Preferred:**
+```swift
+var string = "Hello"
+protocol ViewController {
+  associatedtype ViewType : View
+}
+class ProductionLine {
+  func restock(from widgetFactory: WidgetFactory)
+}
+```
+
+Omit needless words. Every word in a name should convey salient information at the use site.
+
+More words may be needed to clarify intent or disambiguate meaning, but those that are redundant with information the reader already possesses should be omitted. In particular, omit words that merely repeat type information.
+
+**Preferred:**
+```swift
+public mutating func remove(_ member: Element) -> Element?
+
+allViews.remove(cancelButton) // clearer
+```
+
+**Not Preferred:**
+```swift
+public mutating func removeElement(_ member: Element) -> Element?
+
+allViews.removeElement(cancelButton)
+```
 
 ### Prose
 
