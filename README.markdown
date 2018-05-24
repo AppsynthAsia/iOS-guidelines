@@ -38,6 +38,8 @@
   * [Failing Guards](#failing-guards)
 * [Semicolons](#semicolons)
 * [Parentheses](#parentheses)
+* [Communication Patterns](#communication-patterns)
+* [Frameworks](#frameworks)
 
 
 ## Correctness
@@ -923,3 +925,32 @@ In larger expressions, optional parentheses can sometimes make code read more cl
 ```swift
 let playerMark = (player == current ? "X" : "O")
 ```
+
+## Communication Patterns
+https://www.objc.io/issues/7-foundation/communication-patterns/
+
+## Frameworks
+
+**Reusable Patterns:**
+https://github.com/AliSoftware/Reusable
+
+**Manage Date:**
+https://github.com/malcommac/SwiftDate
+
+**Network Layer:**
+https://github.com/Moya/Moya
+
+**Kingfisher:**
+https://github.com/onevcat/Kingfisher
+
+**Reactive Functional Programming:**
+https://github.com/ReactiveX/RxSwift
+
+**Version:**
+https://github.com/sebyddd/SDVersion
+
+**Localize:**
+https://github.com/marmelroy/Localize-Swift
+
+**Animation:**
+https://github.com/airbnb/lottie-ios
