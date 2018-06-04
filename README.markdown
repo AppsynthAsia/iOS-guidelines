@@ -713,6 +713,20 @@ let value = max(x, y, z)  // another free function that feels natural
 
 Code (even non-production, tutorial demo code) should not create reference cycles. Analyze your object graph and prevent strong cycles with `weak` and `unowned` references. Alternatively, use value types (`struct`, `enum`) to prevent cycles altogether.
 
+### Declare UI instance
+
+**Preferred**
+```swift
+ @IBOutlet private strong var titleLabel: UILabel!
+}
+```
+
+**Not Preferred**
+```swift
+ @IBOutlet private weak var titleLabel: UILabel!
+}
+```
+
 ### Extending object lifetime
 
 Extend object lifetime using the `[weak self]` and `guard let strongSelf = self else { return }` idiom. `[weak self]` is preferred to `[unowned self]` where it is not immediately obvious that `self` outlives the closure. Explicitly extending lifetime is preferred to optional unwrapping.
