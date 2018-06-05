@@ -1,4 +1,4 @@
-##QA Process
+## QA Process
 
 1. The result does not reach the DoD
    - The story will be pulled back to TODO with the test results in the comments
