@@ -41,6 +41,16 @@
 * [Communication Patterns](#communication-patterns)
 * [Frameworks](#frameworks)
 
+## Review code time
+
+10:30 - 11:00, 15:00 - 15:30, 17.00 - 17.30
+
+Rule:
+- Approve at least 2
+- Create task for require job.
+- Atomic commit
+- If have any change after approve should decline
+- should add all iOS team members to be reviewers
 
 ## Correctness
 
