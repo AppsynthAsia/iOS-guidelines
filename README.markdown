@@ -46,11 +46,13 @@
 10:30 - 11:00, 15:00 - 15:30, 17.00 - 17.30
 
 Rule:
-- Approve at least 2
-- Create task for require job.
-- Atomic commit
-- If have any change after approve should decline
-- should add all iOS team members to be reviewers
+ - Need 2 Approvals at least for merge and need to be 1 teammate project at least (If   you develop alone, That's fine for all outside your project).
+ - If you add some tasks, it should be your responsibility to follow up them.
+ - When you create pull request already but you have new changes that not relate to fixed any comments or any tasks. 
+      Need to create the new pull request. Do NOT put the hidden unreviewed changes.
+ - Atomic commit
+ - If have any change after approve should decline
+ - should add all iOS team members to be reviewers
 
 ## Correctness
 
