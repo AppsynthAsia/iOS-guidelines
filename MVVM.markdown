@@ -1,4 +1,4 @@
-#MVVM Guidelines
+# MVVM Guidelines
 
 * [Inputs - Outputs](#inputs---outputs)
   * [Principles](#principles)
@@ -7,12 +7,6 @@
   * [Reference](#reference)
 
 ## Inputs - Outputs
-
-When it comes to iOS architecture, MVVM is one of the most favorable candidates. Not only does it provide higher testability than MVC but also this architecture is lightweight as compared to its counterparts such as VIPER. Despite that, proper approaches should be adopted to take advantage of MVVM. Otherwise, we could end up with an alike version of MVC with an additional component (ViewModel).
-
-This post introduces an approach call Inputs - Outputs, currently used at Kickstarter. You can see a high fraction of this style in the Kickstarter iOS app.
-
-Disclaimer: This approach is nothing but a convention. Don’t get confused it with an architecture.
 
 #### Principles
 
@@ -52,19 +46,19 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelInputsType, LoginV
 	var ouputs: LoginViewModelOutputsType { return self }
 
 	// MARK: - Inputs
-	private let _tapSubmit = Variable<Void>(())
+	private let _tapSubmit = PublishSubject<Void>()
 	func tapSubmit() { 
-		_tapSubmit.value = ()
+		_tapSubmit.onNext(())
 	}
 
-	private let _email = Variable<String>("")
+	private let _email = BehaviorSubject<String>(value: "")
 	func type(email: String) {
-		_email.value = email
+		_email.onNext(email)
 	}
 	...
 
 	// MARK: - Ouputs
-	private let _loginSuccess = Variable<Void>(())
+	private let _loginSuccess = PublishSubject<Void>(())
 	var loginSuccess: Observable<Void> { return _loginSuccess.skip(1) }
 	...
 
