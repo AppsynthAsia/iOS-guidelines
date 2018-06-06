@@ -4,6 +4,7 @@
   * [Principles](#principles)
   * [How-to](#how-to)
   * [Why Inputs - Outputs?](#why-inputs--outputs)
+  * [Example](#example)
   * [Reference](#reference)
 
 ## Inputs - Outputs
@@ -107,6 +108,10 @@ func test_When_Submitting_Then_ShouldShowLoadingAndThenHideWhenCompleted() {
 ```
 
 By looking at the codes related to inputs calls, we quickly have a sense of the scenarios we are trying to simulate. Similarly, what we expect to see are reflected upon outputs.
+
+#### Example
+from our candidate
+https://github.com/MechinMaru/500PxDemo
 
 #### Reference
 
