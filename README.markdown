@@ -38,6 +38,7 @@
   * [Failing Guards](#failing-guards)
 * [Semicolons](#semicolons)
 * [Parentheses](#parentheses)
+* [Dependency Injection](#dependency-injection)
 * [Communication Patterns](#communication-patterns)
 * [Frameworks](#frameworks)
 
@@ -45,7 +46,7 @@
 
 10:30 - 11:00, 15:00 - 15:30, 17.00 - 17.30
 
-Rule:
+Rules:
  - Need 2 Approvals at least for merge and need to be 1 teammate project at least (If   you develop alone, That's fine for all outside your project).
  - If you add some tasks, it should be your responsibility to follow up them.
  - When you create pull request already but you have new changes that not relate to fixed any comments or any tasks. 
@@ -951,6 +952,59 @@ In larger expressions, optional parentheses can sometimes make code read more cl
 ```swift
 let playerMark = (player == current ? "X" : "O")
 ```
+
+## Dependency Injection
+### Initializer-Based Injection
+
+**Preferred:**
+```swift
+
+protocol Service {}
+class RealService: Service {}
+
+class Client {
+    private let service: Service
+
+    init(service: Service) {
+        self.service = service
+    }
+}
+
+```
+
+Or
+
+```swift
+
+protocol Service {}
+class RealService: Service {}
+
+class Client {
+    var service: Service!
+}
+
+var client = Client()
+client.service = RealService()
+
+```
+
+**Not Preferred:**
+```swift
+
+protocol Service {}
+class RealService: Service {}
+
+class Client {
+    private let service: Service
+
+    init() {
+        service = RealService()
+    }
+}
+
+```
+
+Ref: https://www.objc.io/issues/15-testing/dependency-injection/#constructor-injection
 
 ## Communication Patterns
 https://www.objc.io/issues/7-foundation/communication-patterns/
