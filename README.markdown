@@ -333,6 +333,22 @@ class TestDatabase : Database {
 
 * Long lines should be wrapped at around 140 characters. A hard limit is intentionally not specified.
 
+**Preferred:**
+```swift
+let result = API.Request(
+                         url: BASE_URL,
+                         method: .get,
+                         params: ...,
+                         headers: ...
+                        )
+
+```
+
+**Not Preferred:**
+```swift
+let result = API.Request(url: BASE_URL, method: .get, params: ..., headers: ...)
+```
+
 * Avoid trailing whitespaces at the ends of lines.
 
 * Add a single newline character at the end of each file.
