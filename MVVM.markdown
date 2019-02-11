@@ -20,17 +20,16 @@ Behaviors defined in inputs should not be expressed as Variable because we donâ€
 
 ```swift
 protocol LoginViewModelInputsType {
-	func viewDidLoad()
-	func tapSubmit()
-	func type(email: String)
-	func type(password: String)
+	var viewDidLoad: PublishRelay<Void> { get }
+	var tapSubmit: PublishRelay<Void> { get }
+
 }
 
 protocol LoginViewModelOutputsType {
-	var validInput: Observable<Bool> { get }
-	var isLoading: Observable<Bool> { get }
-	var loginSuccess: Observable<Void> { get }
-	var loginFailure: Observable<ErrorMessage> { get }
+	var validInput: Driver<Bool> { get }
+	var isLoading: Driver<Bool> { get }
+	var loginSuccess: Driver<Void> { get }
+	var loginFailure: Driver<ErrorMessage> { get }
 }
 
 protocol LoginViewModelType {
@@ -47,34 +46,10 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelInputsType, LoginV
 	var ouputs: LoginViewModelOutputsType { return self }
 
 	// MARK: - Inputs
-	private let _tapSubmit = PublishSubject<Void>()
-	func tapSubmit() { 
-		_tapSubmit.onNext(())
-	}
+	let tapSubmit = PublishRelay<Void>()
+	let email = PublishRelay<String>(value: "")
 
-	private let _email = BehaviorSubject<String>(value: "")
-	func type(email: String) {
-		_email.onNext(email)
-	}
 	...
-
-	// MARK: - Ouputs
-	private let _loginSuccess = PublishSubject<Void>(())
-	var loginSuccess: Observable<Void> { return _loginSuccess.skip(1) }
-	...
-
-	init() {
-		let loginObservable = _tapSubmit.asObservable().skip(1)
-			.flatMapLatest(login)
-			.share()
-
-		loginObservable
-			.bind(to: _loginSuccess)
-			.diposed(by: disposeBag)
-
-		// Binding for `_loginFailure` and `isLoading` goes here
-		...
-	}
 }
 ```
 
@@ -108,10 +83,6 @@ func test_When_Submitting_Then_ShouldShowLoadingAndThenHideWhenCompleted() {
 ```
 
 By looking at the codes related to inputs calls, we quickly have a sense of the scenarios we are trying to simulate. Similarly, what we expect to see are reflected upon outputs.
-
-#### Example
-from our candidate
-https://github.com/MechinMaru/500PxDemo
 
 #### Reference
 
